@@ -1,4 +1,4 @@
-var wrestlersInput = require('./inputs/wrestlersInput.json');
+var wrestlersInput = require('./wrestlersInput.json');
 import { Wrestler } from './wrestler';
 import { Match } from './match';
 

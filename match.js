@@ -25,7 +25,6 @@ var Match = /** @class */ (function () {
             var turn = true;
             if (turn) {
                 var move = this.pickRandomMove(this.wrestler1);
-                console.log(this.wrestler1);
                 this.wrestler1.attack(move, this.wrestler2);
                 turn = !turn;
             }
