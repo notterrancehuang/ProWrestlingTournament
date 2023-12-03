@@ -23,10 +23,11 @@ export class Match {
             return;
         }
 
+        // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
+        let turn: boolean = true; 
+
         while (!this.wrestler1.isOut && !this.wrestler2.isOut) {
             console.log(`Round ${this.roundNumber++}`);
-            // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
-            let turn: boolean = true; 
             if (turn) {
                 let move = this.pickRandomMove(this.wrestler1);
                 this.wrestler1.attack(move, this.wrestler2);

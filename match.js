@@ -19,10 +19,10 @@ var Match = /** @class */ (function () {
             console.log("".concat(this.wrestler2.name, " on bye. Round progressing."));
             return;
         }
+        var turn = true;
         while (!this.wrestler1.isOut && !this.wrestler2.isOut) {
             console.log("Round ".concat(this.roundNumber++));
             // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
-            var turn = true;
             if (turn) {
                 var move = this.pickRandomMove(this.wrestler1);
                 this.wrestler1.attack(move, this.wrestler2);

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var wrestlersInput = require('inputs/wrestlersInput.json');
+var wrestlersInput = require('./wrestlersInput.json');
 var match_1 = require("./match");
 var Tournament = /** @class */ (function () {
     function Tournament(wrestlers) {
