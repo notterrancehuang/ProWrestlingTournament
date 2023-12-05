@@ -2,7 +2,10 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wrestler = void 0;
 var Wrestler = /** @class */ (function () {
-    function Wrestler() {
+    function Wrestler(name, health, moves) {
+        this._name = name;
+        this._initialHealth = health;
+        this._moves = moves;
     }
     Object.defineProperty(Wrestler.prototype, "name", {
         get: function () {
@@ -53,6 +56,13 @@ var Wrestler = /** @class */ (function () {
     };
     Wrestler.prototype.isOut = function () {
         return this.health <= 0;
+    };
+    Wrestler.prototype.resetHealth = function () {
+        this.health = this._initialHealth;
+    };
+    Wrestler.fromJSON = function (json) {
+        var name = json.name, health = json.health, moves = json.moves;
+        return new Wrestler(name, health, moves);
     };
     return Wrestler;
 }());

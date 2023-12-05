@@ -21,6 +21,8 @@ export class Match {
             return this.wrestler2;
         }
 
+        this.wrestler1.resetHealth();
+        this.wrestler2.resetHealth();
         console.log(`Match ${Match.matchNumber++}: ${this.wrestler1.name} vs. ${this.wrestler2.name}`);
         // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
         let turn: boolean = true; 

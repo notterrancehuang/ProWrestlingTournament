@@ -40,7 +40,7 @@ class Tournament {
 
 let wrestlers:Wrestler[] = [];
 wrestlersInput.forEach(element => {
-    let wrestler = Object.assign(new Wrestler(), element);
+    let wrestler = Wrestler.fromJSON(element);
     wrestlers.push(wrestler);
 });
 let tournament = new Tournament(wrestlers);

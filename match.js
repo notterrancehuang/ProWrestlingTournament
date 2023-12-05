@@ -16,6 +16,8 @@ var Match = /** @class */ (function () {
             // if wrestler 1 is an empty object, then wrestler 2 progresses
             return this.wrestler2;
         }
+        this.wrestler1.resetHealth();
+        this.wrestler2.resetHealth();
         console.log("Match ".concat(Match.matchNumber++, ": ").concat(this.wrestler1.name, " vs. ").concat(this.wrestler2.name));
         // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
         var turn = true;

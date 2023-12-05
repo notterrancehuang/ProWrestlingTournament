@@ -35,11 +35,9 @@ var Tournament = /** @class */ (function () {
     };
     return Tournament;
 }());
-// const wrestlers:Wrestler[] = wrestlersInput as Wrestler[];
-// const wrestlers:Wrestler[] = Object.assign(new Wrestler[], wrestlersInput);
 var wrestlers = [];
 wrestlersInput.forEach(function (element) {
-    var wrestler = Object.assign(new wrestler_1.Wrestler(), element);
+    var wrestler = wrestler_1.Wrestler.fromJSON(element);
     wrestlers.push(wrestler);
 });
 var tournament = new Tournament(wrestlers);

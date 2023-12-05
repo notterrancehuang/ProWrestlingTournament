@@ -2,8 +2,15 @@ import { Move } from "./move";
 
 export class Wrestler {
     private _name: string;
+    private _initialHealth: number;
     private _health: number;
     private _moves: Move[];
+
+    constructor(name: string, health: number, moves:Move[]) {
+        this._name = name;
+        this._initialHealth = health;
+        this._moves = moves;
+    }
 
     get name() {
         return this._name;
@@ -51,5 +58,14 @@ export class Wrestler {
 
     isOut(): boolean {
         return this.health <= 0;
+    }
+
+    resetHealth() {
+        this.health = this._initialHealth;
+    }
+
+    static fromJSON(json: any): Wrestler {
+        const { name, health, moves }  = json;
+        return new Wrestler(name, health, moves);
     }
 }
