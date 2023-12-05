@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Match = void 0;
 var Match = /** @class */ (function () {
     function Match(wrestler1, wrestler2) {
-        // where the match takes place
         this.roundNumber = 1;
         this._wrestler1 = wrestler1;
         this._wrestler2 = wrestler2;
@@ -11,14 +10,13 @@ var Match = /** @class */ (function () {
     Match.prototype.startMatch = function () {
         if (!this.wrestler2) {
             // if wrestler 2 is an empty object, then wrestler 1 progresses
-            console.log("".concat(this.wrestler1.name, " on bye. Round progressing."));
-            return;
+            return this.wrestler1;
         }
         else if (!this.wrestler1) {
             // if wrestler 1 is an empty object, then wrestler 2 progresses
-            console.log("".concat(this.wrestler2.name, " on bye. Round progressing."));
-            return;
+            return this.wrestler2;
         }
+        console.log("Match ".concat(Match.matchNumber++, ": ").concat(this.wrestler1.name, " vs. ").concat(this.wrestler2.name));
         // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
         var turn = true;
         while (!this.wrestler1.isOut() && !this.wrestler2.isOut()) {
@@ -39,6 +37,7 @@ var Match = /** @class */ (function () {
         // Round is over. Checking who won
         var winnerMessage = this.displayWinner();
         console.log(winnerMessage);
+        return this.getWinner();
     };
     Object.defineProperty(Match.prototype, "wrestler1", {
         get: function () {
@@ -54,16 +53,20 @@ var Match = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
+    Match.prototype.getWinner = function () {
+        return this.wrestler1.isOut ? this.wrestler2 : this.wrestler1;
+    };
     Match.prototype.displayWinner = function () {
-        if (this.wrestler2.isOut) {
-            // wrestler 1 is the winner
-            return "".concat(this.wrestler2.name, "'s health is below 0. ").concat(this.wrestler1.name, " wins!\n");
+        if (this.getWinner() === this.wrestler1) {
+            return "".concat(this.wrestler2.name, "'s health is below 0. ").concat(this.getWinner().name, " wins!\n");
         }
         else {
             // wrestler 2 is the winner
-            return "".concat(this.wrestler1.name, "'s health is below 0. ").concat(this.wrestler2.name, " wins!\n");
+            return "".concat(this.wrestler1.name, "'s health is below 0. ").concat(this.getWinner().name, " wins!\n");
         }
     };
+    // where the match takes place
+    Match.matchNumber = 1;
     return Match;
 }());
 exports.Match = Match;
