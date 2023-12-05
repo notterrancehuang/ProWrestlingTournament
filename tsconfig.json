@@ -1,9 +1,8 @@
 {
     "compilerOptions": {
         "target": "ES6", 
-        "module": "Node16",
-        "outDir": "out",
-        "moduleResolution": "node16",
+        "module": "CommonJS",
+        "outDir": "./out",
         "resolveJsonModule": true,
         "esModuleInterop": true
     }
