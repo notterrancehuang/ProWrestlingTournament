@@ -6,4 +6,8 @@ Simulating a wrestling tournament by creating matches and simulating wrestlers f
 
 ## How to run
 `tsc tournament.ts` \
-`node tournament.js`
+`node tournament.js` 
+
+Or, to run both commands in one line:
+
+`tsc tournament.ts; node tournament.js`
