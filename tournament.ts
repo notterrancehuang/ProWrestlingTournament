@@ -1,11 +1,12 @@
 var wrestlersInput = require('./wrestlersInput.json');
 import { Wrestler } from './wrestler';
 import { Match } from './match';
+import { Stack } from './stack';
 
 class Tournament {
     private wrestlers: Wrestler[];
     private matchNumber: number;
-    private matches:Match[];
+    private matches:Stack<Match>;
 
     constructor(wrestlers: Wrestler[]) {
         this.wrestlers = wrestlers;
@@ -16,7 +17,7 @@ class Tournament {
 
     private createMatches(wrestlers: Wrestler[]) {
         let numWrestlers = wrestlers.length;
-        let matches:Match[] = [];
+        let matches: Stack<Match> = new Stack<Match>;
         for (let i = 0; i < numWrestlers; i += 2) {
             let wrestler1 = wrestlers[i];
             let wrestler2 = wrestlers[i + 1];
@@ -26,9 +27,8 @@ class Tournament {
     }
 
     playMatches() {
-        let numMatches = this.matches.length;
-        for (let i = 0; i < numMatches; i++) {
-            let match = this.matches[i];
+        while (!this.matches.isEmpty()) {
+            let match = this.matches.pop();
             console.log(`Match ${this.matchNumber++}: ${match.wrestler1.name} vs. ${match.wrestler2.name}`);
             match.startMatch();
         }

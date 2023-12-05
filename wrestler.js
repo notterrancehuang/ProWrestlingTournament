@@ -2,10 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Wrestler = void 0;
 var Wrestler = /** @class */ (function () {
-    function Wrestler(name, health, moves) {
-        this._name = name;
-        this._health = health;
-        this._moves = moves;
+    function Wrestler() {
     }
     Object.defineProperty(Wrestler.prototype, "name", {
         get: function () {
@@ -47,6 +44,12 @@ var Wrestler = /** @class */ (function () {
     Wrestler.prototype.attack = function (move, opponent) {
         opponent.takeDamage(move.damage);
         return "".concat(this.name, " performs ").concat(move.name, " on ").concat(opponent.name, ". ").concat(opponent.name, "'s health: ").concat(opponent.health);
+    };
+    Wrestler.prototype.pickRandomMove = function () {
+        var numMoves = this.moves.length;
+        var randomNumber = Math.floor(Math.random() * numMoves);
+        var move = this.moves[randomNumber];
+        return move;
     };
     Wrestler.prototype.isOut = function () {
         return this.health <= 0;

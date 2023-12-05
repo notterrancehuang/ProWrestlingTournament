@@ -19,18 +19,20 @@ var Match = /** @class */ (function () {
             console.log("".concat(this.wrestler2.name, " on bye. Round progressing."));
             return;
         }
+        // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
         var turn = true;
-        while (!this.wrestler1.isOut && !this.wrestler2.isOut) {
-            console.log("Round ".concat(this.roundNumber++));
-            // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
+        while (!this.wrestler1.isOut() && !this.wrestler2.isOut()) {
+            console.log("Round ".concat(this.roundNumber++, ":"));
             if (turn) {
-                var move = this.pickRandomMove(this.wrestler1);
-                this.wrestler1.attack(move, this.wrestler2);
+                var move = this.wrestler1.pickRandomMove();
+                var message = this.wrestler1.attack(move, this.wrestler2);
+                console.log(message);
                 turn = !turn;
             }
             else {
-                var move = this.pickRandomMove(this.wrestler2);
-                this.wrestler2.attack(move, this.wrestler1);
+                var move = this.wrestler2.pickRandomMove();
+                var message = this.wrestler2.attack(move, this.wrestler1);
+                console.log(message);
                 turn = !turn;
             }
         }
@@ -52,20 +54,14 @@ var Match = /** @class */ (function () {
         enumerable: false,
         configurable: true
     });
-    Match.prototype.pickRandomMove = function (wrestler) {
-        var numMoves = wrestler.moves.length;
-        var randomNumber = Math.floor(Math.random() * numMoves);
-        var move = wrestler.moves[randomNumber];
-        return move;
-    };
     Match.prototype.displayWinner = function () {
         if (this.wrestler2.isOut) {
             // wrestler 1 is the winner
-            return "".concat(this.wrestler2.name, "'s health is below 0. ").concat(this.wrestler1.name, " wins!");
+            return "".concat(this.wrestler2.name, "'s health is below 0. ").concat(this.wrestler1.name, " wins!\n");
         }
         else {
             // wrestler 2 is the winner
-            return "".concat(this.wrestler1.name, "'s health is below 0. ").concat(this.wrestler2.name, " wins!");
+            return "".concat(this.wrestler1.name, "'s health is below 0. ").concat(this.wrestler2.name, " wins!\n");
         }
     };
     return Match;
