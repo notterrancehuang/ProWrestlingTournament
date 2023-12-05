@@ -39,7 +39,8 @@ class Tournament {
 // const wrestlers:Wrestler[] = Object.assign(new Wrestler[], wrestlersInput);
 let wrestlers:Wrestler[] = [];
 wrestlersInput.forEach(element => {
-    wrestlers.push(element);
+    let wrestler = Object.assign(new Wrestler(), element);
+    wrestlers.push(wrestler);
 });
 let tournament = new Tournament(wrestlers);
 tournament.playMatches();

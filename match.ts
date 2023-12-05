@@ -1,5 +1,4 @@
 import { Wrestler } from "./wrestler";
-import { Move } from "./move";
 
 export class Match {
     // where the match takes place
@@ -26,15 +25,17 @@ export class Match {
         // Alternating turns: true -> Wrestler 1, false -> Wrestler 2
         let turn: boolean = true; 
 
-        while (!this.wrestler1.isOut && !this.wrestler2.isOut) {
-            console.log(`Round ${this.roundNumber++}`);
+        while (!this.wrestler1.isOut() && !this.wrestler2.isOut()) {
+            console.log(`Round ${this.roundNumber++}:`);
             if (turn) {
-                let move = this.pickRandomMove(this.wrestler1);
-                this.wrestler1.attack(move, this.wrestler2);
+                let move = this.wrestler1.pickRandomMove();
+                let message = this.wrestler1.attack(move, this.wrestler2);
+                console.log(message);
                 turn = !turn;
             } else {
-                let move = this.pickRandomMove(this.wrestler2);
-                this.wrestler2.attack(move, this.wrestler1);
+                let move = this.wrestler2.pickRandomMove();
+                let message = this.wrestler2.attack(move, this.wrestler1);
+                console.log(message);
                 turn = !turn;
             }
         }
@@ -52,20 +53,14 @@ export class Match {
         return this._wrestler2;
     }
 
-    pickRandomMove(wrestler:Wrestler):Move {
-        let numMoves = wrestler.moves.length;
-        let randomNumber = Math.floor(Math.random() * numMoves);
-        let move = wrestler.moves[randomNumber];
-        return move;
-    }
 
     displayWinner(): string {
         if (this.wrestler2.isOut) {
             // wrestler 1 is the winner
-            return `${this.wrestler2.name}'s health is below 0. ${this.wrestler1.name} wins!`;
+            return `${this.wrestler2.name}'s health is below 0. ${this.wrestler1.name} wins!\n`;
         } else {
             // wrestler 2 is the winner
-            return `${this.wrestler1.name}'s health is below 0. ${this.wrestler2.name} wins!`;
+            return `${this.wrestler1.name}'s health is below 0. ${this.wrestler2.name} wins!\n`;
         }
     }
 }

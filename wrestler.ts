@@ -5,12 +5,6 @@ export class Wrestler {
     private _health: number;
     private _moves: Move[];
 
-    constructor(name: string, health: number, moves: Move[]) {
-        this._name = name;
-        this._health = health;
-        this._moves = moves;
-    }
-
     get name() {
         return this._name;
     }
@@ -46,6 +40,13 @@ export class Wrestler {
     attack(move: Move, opponent: Wrestler): string {
         opponent.takeDamage(move.damage);
         return `${this.name} performs ${move.name} on ${opponent.name}. ${opponent.name}'s health: ${opponent.health}`;
+    }
+
+    pickRandomMove():Move {
+        let numMoves = this.moves.length;
+        let randomNumber = Math.floor(Math.random() * numMoves);
+        let move = this.moves[randomNumber];
+        return move;
     }
 
     isOut(): boolean {
